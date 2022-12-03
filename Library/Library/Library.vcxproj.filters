@@ -18,12 +18,12 @@
     <ClInclude Include="Book.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LibraryIndex.h">
+    <ClInclude Include="Library.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LibraryIndex.cpp">
+    <ClCompile Include="Library.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

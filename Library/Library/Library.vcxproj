@@ -140,10 +140,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Book.h" />
-    <ClInclude Include="LibraryIndex.h" />
+    <ClInclude Include="Library.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LibraryIndex.cpp" />
+    <ClCompile Include="Library.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
