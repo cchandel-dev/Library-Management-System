@@ -1,10 +1,8 @@
 #include "Library.h"
-#pragma warning(disable : 4996)
+//Overload the < operator.
 
 bool Library::addBook(std::string name, std::string author, int size, int publishDate, int publishMonth, int publishYear) {
 	if (size < 0) return false;
-	std::time_t t = std::time(nullptr);
-	std::tm* now = std::localtime(&t);
 	if (publishDate > 31 || publishDate < 0 || publishMonth > 12 || publishMonth < 0 || publishYear > 2022)
 		return false;
 	std::tm published = tm();
@@ -13,15 +11,16 @@ bool Library::addBook(std::string name, std::string author, int size, int publis
 	published.tm_mday = publishDate;
 	data[name] = Book(name, author, published, size);
 	Book last = data[name];
-	sortByName.push(last.getName());
-	sortByDate.push(DateData(last.getName(), last.getPublishDate()));
-	sortBySize.push(SizeData(last.getName(), last.getSize()));
-	if (searchByAuthor.count(last.getAuthor()) == 0) {
-		unordered_set<string> temp;
-		searchByAuthor[last.getAuthor()] = temp;
+	sortByName.push(name);
+	sortByDate.push(DateData(name, published));
+	sortBySize.push(SizeData(name, size));
+
+	if (searchByAuthor.count(author) == 0) {
+		unordered_set<string> temp{ name };
+		searchByAuthor[author] = temp;
 	}
 	else {
-		searchByAuthor[last.getAuthor()].insert(last.getName());
+		searchByAuthor[author].insert(name);
 	}
 	return true;
 }
@@ -34,8 +33,8 @@ bool Library::deleteBook(std::string name) {
 	//erase element from sortByName
 	priority_queue<string> temp;
 	while (sortByName.top() != name) {
-			temp.push(sortByName.top());
-			sortByName.pop();
+		temp.push(sortByName.top());
+		sortByName.pop();
 	}
 	sortByName.pop();
 	while (sortByName.size()) {
@@ -45,7 +44,7 @@ bool Library::deleteBook(std::string name) {
 	sortByName = temp;
 	//erase element from sortByDate
 	priority_queue<DateData>temp_time;
-	while (sortByDate.top().name!= name) {
+	while (sortByDate.top().name != name) {
 		temp_time.push(sortByDate.top());
 		sortByDate.pop();
 	}
@@ -75,19 +74,4 @@ std::string Library::printStats() {
 	output += "There are " + to_string(data.size()) + "books in the Library!";
 	return output;
 }
-using namespace std;
-int main(int argc, char* argv[], char* envp[])
-{
-	//the problem is not with the testing files but instead it's with addBook or with Library - solved
-	// still a problem with searchByAuthor
-	Library test;
-	test.addBook("The Adventures of Tom Sawyer", "Mark Twain", 224, 15, 8, 1883);
-	test.addBook("The Adventures of Huckleberry Finn", "Mark Twain", 168, 2, 2, 1885);
-	test.addBook("A Promised Land", "Barack Obama", 768, 17, 11, 2020);
-
-	int s = test.getRecordSize();
-	auto q1 = test.getDatesSorted();
-	auto q2 = test.getSizesSorted();
-	auto q3 = test.getNamesSorted();
-	auto s1 = test.getBooksByAuthor("Mark Twain");
-}
+int Library::getRecordSize(){ return data.size(); }
