@@ -1,11 +1,10 @@
-#include "uilms.h"
-
-#include <QApplication>
+#include "QtWidgetsApplicationLMS.h"
+#include <QtWidgets/QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    UILMS w;
+    QtWidgetsApplicationLMS w;
     w.show();
     return a.exec();
 }

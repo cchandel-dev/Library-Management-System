@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtWidgetsApplicationLMSClass</class>
+ <widget class="QMainWindow" name="QtWidgetsApplicationLMSClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>591</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>QtWidgetsApplicationLMS</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QPushButton" name="addButton">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>300</y>
+      <width>75</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="selectionLabelUnused">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>340</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Current Selection:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="bookTitleLabel">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>340</y>
+      <width>131</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="deleteButton">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>340</y>
+      <width>75</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Delete</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="sortDateButton">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>230</y>
+      <width>141</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>sort by publish date</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="sortTitleButton">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>260</y>
+      <width>89</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>sort by title</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="sortSizeButton">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>200</y>
+      <width>121</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>sort by book size</string>
+    </property>
+   </widget>
+   <widget class="QListView" name="listView">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>80</y>
+      <width>256</width>
+      <height>192</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="QtWidgetsApplicationLMS.qrc"/>
+ </resources>
+ <connections/>
+</ui>
