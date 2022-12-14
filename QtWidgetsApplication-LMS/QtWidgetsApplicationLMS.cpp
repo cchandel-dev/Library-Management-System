@@ -12,8 +12,9 @@ QtWidgetsApplicationLMS::QtWidgetsApplicationLMS(QWidget *parent)
     ui.listView->setModel(&model);
     ui.listView->setSelectionMode(QAbstractItemView::SingleSelection);
     test.addBook("The Adventures of Tom Sawyer", "Mark Twain", 224, 15, 8, 1883);
+    test.addBook("Harry Potter", "JK Rowling", 3000, 12, 10, 2021);
     test.addBook("The Adventures of Huckleberry Finn", "Mark Twain", 168, 2, 2, 1885);
-    test.addBook("A Promised Land", "Barack Obama", 768, 17, 11, 2020);
+    test.addBook("A Promised Land", "Barack Obama", 768, 17, 11, 2010);
     // connect the selectionChanged signal to the handleSelectionChanged slot
     QObject::connect(ui.addButton, SIGNAL(clicked()), this, SLOT(addButton_clicked()));
     QObject::connect(ui.searchButton, SIGNAL(clicked()), this, SLOT(searchByAuthor()));

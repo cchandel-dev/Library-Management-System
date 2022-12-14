@@ -10,35 +10,25 @@
 #include "SizeData.h"
 #include <ctime>
 using namespace std;
-inline bool operator< (const SizeData& a, const SizeData& b)
-{
-	return a.size > b.size;
-}
-//Overload the > operator.
-inline bool operator> (const SizeData& a, const SizeData& b)
-{
-	return a.size < b.size;
-}
-//Overload the < operator.
-inline bool operator< (const DateData& a, const DateData& b)
-{
-	DateData temp_a = a;
-	DateData temp_b = b;
-	return difftime(mktime(&temp_a.age), mktime(&temp_b.age)) < 0;
-}
-//Overload the > operator.
-inline bool operator> (const DateData& a, const DateData& b)
-{
-	DateData temp_a = a;
-	DateData temp_b = b;
-	return difftime(mktime(&temp_a.age), mktime(&temp_b.age)) > 0;
-}
+struct SizeCompare {
+	bool operator()(const SizeData& a, const SizeData& b) const
+	{
+		return a.size > b.size;
+	}
+};
+struct DateCompare {
+	bool operator() (DateData& a, DateData& b) const
+	{
+		bool output_temp = a.age <  b.age;
+		return output_temp;
+	}
+};
 class Library {
 private:
 	unordered_map<std::string, Book> data;
 	priority_queue<string> sortByName;
-	priority_queue<DateData, vector<DateData>, less<vector<DateData>::value_type>>sortByDate;
-	priority_queue<SizeData, vector<SizeData>, less<vector<SizeData>::value_type>>sortBySize;
+	priority_queue<DateData, vector<DateData>, DateCompare>sortByDate;
+	priority_queue<SizeData, vector<SizeData>, SizeCompare>sortBySize;
 	unordered_map<string, unordered_set<std::string>>searchByAuthor;
 
 public:
@@ -47,8 +37,8 @@ public:
 	std::string printStats();
 	int getRecordSize(); 
 	inline priority_queue<string> getNamesSorted() { return sortByName; }
-	inline priority_queue<DateData, vector<DateData>, less<vector<DateData>::value_type>> getDatesSorted() { return sortByDate; }
-	inline priority_queue<SizeData, vector<SizeData>, less<vector<SizeData>::value_type>> getSizesSorted() { return sortBySize; }
+	inline priority_queue<DateData, vector<DateData>, DateCompare> getDatesSorted() { return sortByDate; }
+	inline priority_queue<SizeData, vector<SizeData>, SizeCompare> getSizesSorted() { return sortBySize; }
 	inline unordered_set<std::string> getBooksByAuthor(std::string authorName) { return searchByAuthor[authorName]; }
 };
 #endif

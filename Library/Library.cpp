@@ -3,14 +3,24 @@
 
 bool Library::addBook(std::string name, std::string author, int size, int publishDate, int publishMonth, int publishYear) {
 	if (size < 0) return false;
-	std::tm published = tm();
-	published.tm_year = publishYear;
-	published.tm_mon = publishMonth;
+	publishYear = publishYear < 1970 ? 1970 : publishYear;
+	publishYear = publishYear > 2038 ? 2038 : publishYear;
+	publishMonth = publishMonth < 0 ? 0 : publishMonth;
+	publishMonth = publishMonth > 11 ? 11 : publishMonth;
+	publishDate = publishDate < 1 ? 1 : publishDate;
+	publishDate = publishDate > 31 ? 31 : publishDate;
+	std::tm published;
+	published.tm_year = publishYear - 1900;
+	published.tm_mon = publishMonth - 1;
 	published.tm_mday = publishDate;
-	data[name] = Book(name, author, published, size);
+	published.tm_hour = 0;
+	published.tm_min = 0;
+	published.tm_sec = 0;
+	data[name] = Book(name, author, mktime(&published), size);
 	Book last = data[name];
 	sortByName.push(name);
-	sortByDate.push(DateData(name, published));
+	DateData temp_Date = DateData(name, mktime(&published));
+	sortByDate.push(temp_Date);
 	sortBySize.push(SizeData(name, size));
 
 	if (searchByAuthor.count(author) == 0) {
@@ -41,7 +51,7 @@ bool Library::deleteBook(std::string name) {
 	}
 	sortByName = temp;
 	//erase element from sortByDate
-	priority_queue<DateData>temp_time;
+	priority_queue<DateData, vector<DateData>, DateCompare>temp_time;
 	while (sortByDate.top().name != name) {
 		temp_time.push(sortByDate.top());
 		sortByDate.pop();
@@ -53,7 +63,7 @@ bool Library::deleteBook(std::string name) {
 	}
 	sortByDate = temp_time;
 	//erase element from sortBySize
-	priority_queue<SizeData>temp_size;
+	priority_queue<SizeData, vector<SizeData>, SizeCompare>temp_size;
 	while (sortBySize.top().name != name) {
 		temp_size.push(sortBySize.top());
 		sortBySize.pop();

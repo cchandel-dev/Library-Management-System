@@ -23,35 +23,49 @@ namespace NativeUnitTests
 		{
 			//setup the library
 			Library test;
-			test.addBook("The Adventures of Tom Sawyer", "Mark Twain", 224, 15, 8, 1883);
-			test.addBook("The Adventures of Huckleberry Finn", "Mark Twain", 168, 2, 2, 1885);
-			test.addBook("A Promised Land", "Barack Obama", 768, 17, 11, 2020);
-			Assert::AreEqual(3, test.getRecordSize());
+			test.addBook("The Adventures of Tom Sawyer", "Mark Twain", 224, 15, 8, 1971);
+			test.addBook("Harry Potter", "JK Rowling", 3000, 12, 10, 2022);
+			test.addBook("The Adventures of Huckleberry Finn", "Mark Twain", 168, 2, 2, 1973);
+			test.addBook("A Promised Land", "Barack Obama", 768, 17, 11, 2010);
+			Assert::AreEqual(4, test.getRecordSize());
 			//testing the getNamesSorted functions queue (ascending order)
 			auto tempQueue = test.getNamesSorted();
 			Assert::AreEqual(std::string("The Adventures of Tom Sawyer"), tempQueue.top());
 			tempQueue.pop();
 			Assert::AreEqual(std::string("The Adventures of Huckleberry Finn"), tempQueue.top());
 			tempQueue.pop();
+			Assert::AreEqual(std::string("Harry Potter"), tempQueue.top());
+			tempQueue.pop();
 			Assert::AreEqual(std::string("A Promised Land"), tempQueue.top());
 			tempQueue.pop();
 
 			//testing the getDatesSorted functions queue (newest to oldest)
-			priority_queue<DateData, vector<DateData>, less<vector<DateData>::value_type>> tempQueue2 = test.getDatesSorted();
-			Assert::AreEqual(std::string("The Adventures of Tom Sawyer"), tempQueue2.top().name);
+			auto tempQueue2 = test.getDatesSorted();
+			std::string temp = tempQueue2.top().name;
+			Assert::AreEqual(std::string("Harry Potter"), temp);
 			tempQueue2.pop();
-			Assert::AreEqual(std::string("The Adventures of Huckleberry Finn"), tempQueue2.top().name);
+			temp = tempQueue2.top().name;
+			Assert::AreEqual(std::string("A Promised Land"), temp);
 			tempQueue2.pop();
-			Assert::AreEqual(std::string("A Promised Land"), tempQueue2.top().name);
+			temp = tempQueue2.top().name;
+			Assert::AreEqual(std::string("The Adventures of Huckleberry Finn"), temp);
 			tempQueue2.pop();
-		
+			temp = tempQueue2.top().name;
+			Assert::AreEqual(std::string("The Adventures of Tom Sawyer"), temp);
+
 			//testing the getSizesSorted functions queue (largest to smallest)
-			auto tempQueue3 = test.getDatesSorted();
-			Assert::AreEqual(std::string("The Adventures of Tom Sawyer"), tempQueue3.top().name);
+			auto tempQueue3 = test.getSizesSorted();
+			temp = tempQueue3.top().name;
+			Assert::AreEqual(std::string("The Adventures of Huckleberry Finn"), temp);
 			tempQueue3.pop();
-			Assert::AreEqual(std::string("The Adventures of Huckleberry Finn"), tempQueue3.top().name);
+			temp = tempQueue3.top().name;
+			Assert::AreEqual(std::string("The Adventures of Tom Sawyer"), temp);
 			tempQueue3.pop();
-			Assert::AreEqual(std::string("A Promised Land"), tempQueue3.top().name);
+			temp = tempQueue3.top().name;
+			Assert::AreEqual(std::string("A Promised Land"), temp);
+			tempQueue3.pop();
+			temp = tempQueue3.top().name;
+			Assert::AreEqual(std::string("Harry Potter"), temp);
 			tempQueue3.pop();
 		}
 		TEST_METHOD(TestingSearch)
