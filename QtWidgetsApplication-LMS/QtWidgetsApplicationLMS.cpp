@@ -39,8 +39,12 @@ void QtWidgetsApplicationLMS::on_deleteButton_clicked() {
     QItemSelectionModel* select = ui.listView->selectionModel();
     if (select->hasSelection()) { //check if has selectionbuttonClicked
         QModelIndexList rows = select->selectedRows(); // return selected row(s)
-        for (const QModelIndex& row : rows)
+        for (const QModelIndex& row : rows) {
+            QVariant source = model.data(row, Qt::DisplayRole);
+            std::string temp = source.toString().toStdString();
+            test.deleteBook(temp);
             model.removeRow(row.row());
+        }
     }
 }
 void QtWidgetsApplicationLMS::handleSelectionChanged(const QModelIndex& old_idx, const QModelIndex& new_idx) {
@@ -48,11 +52,34 @@ void QtWidgetsApplicationLMS::handleSelectionChanged(const QModelIndex& old_idx,
     ui.bookTitleLabel->setText(data.toString());
 }
 void QtWidgetsApplicationLMS::groupButtonToggled(QAbstractButton* selectedButton) {
-    /*if (selectedButton == ui.sortTitleButton) {
-        model.clear(); 
-
-        QStandardItem* item = new QStandardItem();
-        item->setText(title);
-        model.appendRow(item);
-    }*/
+    if (selectedButton == ui.sortTitleButton) {
+        model.clear();
+        auto tempQueue = test.getNamesSorted();
+        while (tempQueue.size()) {
+            QStandardItem* item = new QStandardItem();
+            item->setText(QString::fromStdString(tempQueue.top()));
+            model.appendRow(item);
+            tempQueue.pop();
+        }
+    }
+    if (selectedButton == ui.sortSizeButton) {
+        model.clear();
+        auto tempQueue = test.getSizesSorted();
+        while (tempQueue.size()) {
+            QStandardItem* item = new QStandardItem();
+            item->setText(QString::fromStdString(tempQueue.top().name));
+            model.appendRow(item);
+            tempQueue.pop();
+        }
+    }
+    if (selectedButton == ui.sortDateButton) {
+        model.clear();
+        auto tempQueue = test.getDatesSorted();
+        while (tempQueue.size()) {
+            QStandardItem* item = new QStandardItem();
+            item->setText(QString::fromStdString(tempQueue.top().name));
+            model.appendRow(item);
+            tempQueue.pop();
+        }
+    }
 }
