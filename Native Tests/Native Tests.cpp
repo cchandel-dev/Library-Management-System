@@ -54,7 +54,7 @@ namespace NativeUnitTests
 			Assert::AreEqual(std::string("A Promised Land"), tempQueue3.top().name);
 			tempQueue3.pop();
 		}
-		TEST_METHOD(TestingSearchByAuthor)
+		TEST_METHOD(TestingSearch)
 		{
 			Library test;
 			test.addBook("The Adventures of Tom Sawyer", "Mark Twain", 224, 15, 8, 1883);

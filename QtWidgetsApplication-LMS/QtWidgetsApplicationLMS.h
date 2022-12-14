@@ -17,6 +17,7 @@ private slots:
     void on_deleteButton_clicked();
     void handleSelectionChanged(const QModelIndex&, const QModelIndex&);
     void groupButtonToggled(QAbstractButton* selectedButton);
+    void searchByAuthor();
 private:
     Ui::QtWidgetsApplicationLMSClass ui;
     int counterOfAddition;

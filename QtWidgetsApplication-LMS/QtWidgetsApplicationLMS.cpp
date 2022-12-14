@@ -2,6 +2,7 @@
 #include "addDialog.h"
 #include <QStandardItemModel>
 #include <QStandardItem>
+#include <QStringListModel>
 #include "Library.h"
 using namespace std;
 QtWidgetsApplicationLMS::QtWidgetsApplicationLMS(QWidget *parent)
@@ -9,9 +10,13 @@ QtWidgetsApplicationLMS::QtWidgetsApplicationLMS(QWidget *parent)
 {
     ui.setupUi(this);
     ui.listView->setModel(&model);
-    ui.listView->setSelectionMode(QAbstractItemView::SingleSelection); 
+    ui.listView->setSelectionMode(QAbstractItemView::SingleSelection);
+    test.addBook("The Adventures of Tom Sawyer", "Mark Twain", 224, 15, 8, 1883);
+    test.addBook("The Adventures of Huckleberry Finn", "Mark Twain", 168, 2, 2, 1885);
+    test.addBook("A Promised Land", "Barack Obama", 768, 17, 11, 2020);
     // connect the selectionChanged signal to the handleSelectionChanged slot
     QObject::connect(ui.addButton, SIGNAL(clicked()), this, SLOT(addButton_clicked()));
+    QObject::connect(ui.searchButton, SIGNAL(clicked()), this, SLOT(searchByAuthor()));
     QObject::connect(ui.buttonGroup, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(groupButtonToggled(QAbstractButton*)));
     QObject::connect(ui.listView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(handleSelectionChanged(const QModelIndex &, const QModelIndex &)));
     ui.listView->show();//not sure this line is even necessary
@@ -80,6 +85,23 @@ void QtWidgetsApplicationLMS::groupButtonToggled(QAbstractButton* selectedButton
             item->setText(QString::fromStdString(tempQueue.top().name));
             model.appendRow(item);
             tempQueue.pop();
+        }
+    }
+}
+void QtWidgetsApplicationLMS::searchByAuthor() {
+    QString author = ui.searchLine->text();
+    unordered_set<std::string> titles = test.getBooksByAuthor(author.toStdString());
+    std::vector<std::string> list;
+    for (int i = 0; i < model.rowCount(); i++) {
+        QString temp = model.index(i, 0).data(Qt::DisplayRole).toString();
+        list.push_back(temp.toStdString());
+    }
+    model.clear();
+    for (const string& qstr : list) {
+        if (titles.find(qstr) != titles.end()) {
+            QStandardItem* item = new QStandardItem();
+            item->setText(QString::fromStdString(qstr));
+            model.appendRow(item);
         }
     }
 }
