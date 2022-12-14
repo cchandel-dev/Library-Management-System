@@ -3,7 +3,7 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_QtWidgetsApplicationLMS.h"
 #include <QStandardItemModel>
-
+#include "Library.h"
 class QtWidgetsApplicationLMS : public QMainWindow
 {
     Q_OBJECT
@@ -13,9 +13,13 @@ public:
     ~QtWidgetsApplicationLMS();
 
 private slots:
-    void on_addButton_clicked();
+    void addButton_clicked();
+    void on_deleteButton_clicked();
+    void handleSelectionChanged(const QModelIndex&, const QModelIndex&);
+    void groupButtonToggled(QAbstractButton* selectedButton);
 private:
     Ui::QtWidgetsApplicationLMSClass ui;
     int counterOfAddition;
     QStandardItemModel model;
+    Library test;
 };

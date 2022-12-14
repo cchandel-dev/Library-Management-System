@@ -1,5 +1,7 @@
 #include "QtWidgetsApplicationLMS.h"
 #include <QtWidgets/QApplication>
+#include <QApplication>
+#include <QListView>
 
 int main(int argc, char *argv[])
 {

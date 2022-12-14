@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>591</width>
+    <width>567</width>
     <height>400</height>
    </rect>
   </property>
@@ -70,7 +70,7 @@
     <property name="geometry">
      <rect>
       <x>380</x>
-      <y>230</y>
+      <y>190</y>
       <width>141</width>
       <height>20</height>
      </rect>
@@ -78,12 +78,15 @@
     <property name="text">
      <string>sort by publish date</string>
     </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup</string>
+    </attribute>
    </widget>
    <widget class="QRadioButton" name="sortTitleButton">
     <property name="geometry">
      <rect>
       <x>380</x>
-      <y>260</y>
+      <y>220</y>
       <width>89</width>
       <height>20</height>
      </rect>
@@ -91,12 +94,15 @@
     <property name="text">
      <string>sort by title</string>
     </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup</string>
+    </attribute>
    </widget>
    <widget class="QRadioButton" name="sortSizeButton">
     <property name="geometry">
      <rect>
       <x>380</x>
-      <y>200</y>
+      <y>160</y>
       <width>121</width>
       <height>20</height>
      </rect>
@@ -104,6 +110,9 @@
     <property name="text">
      <string>sort by book size</string>
     </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup</string>
+    </attribute>
    </widget>
    <widget class="QListView" name="listView">
     <property name="geometry">
@@ -115,6 +124,19 @@
      </rect>
     </property>
    </widget>
+   <widget class="QPushButton" name="selectChange">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>300</y>
+      <width>75</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
@@ -122,4 +144,7 @@
   <include location="QtWidgetsApplicationLMS.qrc"/>
  </resources>
  <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroup"/>
+ </buttongroups>
 </ui>

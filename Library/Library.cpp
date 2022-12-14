@@ -3,8 +3,6 @@
 
 bool Library::addBook(std::string name, std::string author, int size, int publishDate, int publishMonth, int publishYear) {
 	if (size < 0) return false;
-	if (publishDate > 31 || publishDate < 0 || publishMonth > 12 || publishMonth < 0 || publishYear > 2022)
-		return false;
 	std::tm published = tm();
 	published.tm_year = publishYear;
 	published.tm_mon = publishMonth;

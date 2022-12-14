@@ -42,7 +42,6 @@ private:
 	unordered_map<string, unordered_set<std::string>>searchByAuthor;
 
 public:
-
 	bool addBook(std::string name, std::string author, int size, int publishDate, int publishMonth, int publishYear);
 	bool deleteBook(std::string name);
 	std::string printStats();
