@@ -55,7 +55,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <IncludePath>C:\Users\12267\gitstorage\Library-Management-System\Library;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\12267\gitstorage\Library-Management-System\json\include;C:\Users\12267\gitstorage\Library-Management-System\Library;$(IncludePath)</IncludePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
     <ExternalIncludePath>C:\Users\12267\gitstorage\Library-Management-System\Library;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>

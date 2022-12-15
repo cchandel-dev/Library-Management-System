@@ -4,6 +4,11 @@
 #include <QStandardItem>
 #include <QStringListModel>
 #include "Library.h"
+#include <iostream>
+#include <nlohmann/json.hpp>
+#include <fstream>
+
+using json = nlohmann::json;
 using namespace std;
 QtWidgetsApplicationLMS::QtWidgetsApplicationLMS(QWidget *parent)
     : QMainWindow(parent)
@@ -11,10 +16,6 @@ QtWidgetsApplicationLMS::QtWidgetsApplicationLMS(QWidget *parent)
     ui.setupUi(this);
     ui.listView->setModel(&model);
     ui.listView->setSelectionMode(QAbstractItemView::SingleSelection);
-    test.addBook("The Adventures of Tom Sawyer", "Mark Twain", 224, 15, 8, 1883);
-    test.addBook("Harry Potter", "JK Rowling", 3000, 12, 10, 2021);
-    test.addBook("The Adventures of Huckleberry Finn", "Mark Twain", 168, 2, 2, 1885);
-    test.addBook("A Promised Land", "Barack Obama", 768, 17, 11, 2010);
     // connect the selectionChanged signal to the handleSelectionChanged slot
     QObject::connect(ui.addButton, SIGNAL(clicked()), this, SLOT(addButton_clicked()));
     QObject::connect(ui.searchButton, SIGNAL(clicked()), this, SLOT(searchByAuthor()));
@@ -132,6 +133,22 @@ void QtWidgetsApplicationLMS::searchByAuthor() {
     }
 }
 void QtWidgetsApplicationLMS::loadData() {
+        // read in the json file
+        std::ifstream f("GenericBookData.txt", std::ifstream::in);
+
+        json j; //create unitiialized json object
+
+        f >> j; // initialize json object with what was read from file
+
+        std::cout << j << std::endl; // prints json object to screen
+
+        for (auto obj : j) {
+           test.addBook(obj["title"], obj["author"], obj["number_of_pages"], obj["publishing_date"]["publishing_day"], obj["publishing_date"]["publishing_month"], obj["publishing_date"]["publishing_year"]);
+            QStandardItem* item = new QStandardItem();
+            item->setText(QString::fromStdString(obj["title"].get<std::string>()));
+            model.appendRow(item);
+        }
+        ui.buttonGroup->checkedButton()->click();
 
 }
 void QtWidgetsApplicationLMS::clearAllData() {

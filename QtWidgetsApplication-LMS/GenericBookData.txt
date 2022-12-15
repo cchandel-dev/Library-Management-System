@@ -1,0 +1,92 @@
+[
+  {
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "publishing_date": {
+      "publishing_year": 1925,
+      "publishing_month": 4,
+      "publishing_day": 10
+    },
+    "number_of_pages": 218
+  },
+  {
+    "title": "The Catcher in the Rye",
+    "author": "J.D. Salinger",
+    "publishing_date": {
+      "publishing_year": 1951,
+      "publishing_month": 7,
+      "publishing_day": 16
+    },
+    "number_of_pages": 234
+  },
+  {
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "publishing_date": {
+      "publishing_year": 1960,
+      "publishing_month": 7,
+      "publishing_day": 11
+    },
+    "number_of_pages": 281
+  },
+  {
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "publishing_date": {
+      "publishing_year": 1813,
+      "publishing_month": 1,
+      "publishing_day": 28
+    },
+    "number_of_pages": 279
+  },
+  {
+    "title": "The Hitchhiker's Guide to the Galaxy",
+    "author": "Douglas Adams",
+    "publishing_date": {
+      "publishing_year": 1979,
+      "publishing_month": 10,
+      "publishing_day": 12
+    },
+    "number_of_pages": 214
+  },
+  {
+    "title": "One Hundred Years of Solitude",
+    "author": "Gabriel García Márquez",
+    "publishing_date": {
+      "publishing_year": 1967,
+      "publishing_month": 5,
+      "publishing_day": 30
+    },
+    "number_of_pages": 417
+  },
+  {
+    "title": "The Bible",
+    "author": "Various",
+    "publishing_date": {
+      "publishing_year": 0,
+      "publishing_month": 1,
+      "publishing_day": 1
+    },
+    "number_of_pages": 1189
+  },
+  {
+    "title": "Moby-Dick",
+    "author": "Herman Melville",
+    "publishing_date": {
+      "publishing_year": 1851,
+      "publishing_month": 10,
+      "publishing_day": 18
+    },
+    "number_of_pages": 378
+  },
+  {
+    "title": "War and Peace",
+    "author": "Leo Tolstoy",
+    "publishing_date": {
+      "publishing_year": 1869,
+      "publishing_month": 12,
+      "publishing_day": 10
+    },
+    "number_of_pages": 1296
+  }
+]
