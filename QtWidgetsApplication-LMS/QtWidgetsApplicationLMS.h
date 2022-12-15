@@ -18,6 +18,8 @@ private slots:
     void handleSelectionChanged(const QModelIndex&, const QModelIndex&);
     void groupButtonToggled(QAbstractButton* selectedButton);
     void searchByAuthor();
+    void loadData();
+    void clearAllData();
 private:
     Ui::QtWidgetsApplicationLMSClass ui;
     int counterOfAddition;

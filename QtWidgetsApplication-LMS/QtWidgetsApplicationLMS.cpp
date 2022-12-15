@@ -18,9 +18,12 @@ QtWidgetsApplicationLMS::QtWidgetsApplicationLMS(QWidget *parent)
     // connect the selectionChanged signal to the handleSelectionChanged slot
     QObject::connect(ui.addButton, SIGNAL(clicked()), this, SLOT(addButton_clicked()));
     QObject::connect(ui.searchButton, SIGNAL(clicked()), this, SLOT(searchByAuthor()));
+    QObject::connect(ui.actionLoad_Data, SIGNAL(triggered()), this, SLOT(loadData()));
+    QObject::connect(ui.actionClear_Data, SIGNAL(triggered()), this, SLOT(clearAllData()));
     QObject::connect(ui.buttonGroup, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(groupButtonToggled(QAbstractButton*)));
     QObject::connect(ui.listView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(handleSelectionChanged(const QModelIndex &, const QModelIndex &)));
     ui.listView->show();//not sure this line is even necessary
+    ui.sortTitleButton->click();
 }
 
 QtWidgetsApplicationLMS::~QtWidgetsApplicationLMS()
@@ -93,16 +96,49 @@ void QtWidgetsApplicationLMS::searchByAuthor() {
     QString author = ui.searchLine->text();
     unordered_set<std::string> titles = test.getBooksByAuthor(author.toStdString());
     std::vector<std::string> list;
-    for (int i = 0; i < model.rowCount(); i++) {
-        QString temp = model.index(i, 0).data(Qt::DisplayRole).toString();
-        list.push_back(temp.toStdString());
+    if(ui.buttonGroup->checkedButton() == ui.sortTitleButton){
+        auto temp = test.getNamesSorted();
+        while (temp.size()) {
+            list.push_back(temp.top());
+            temp.pop();
+        }
+    }
+    if (ui.buttonGroup->checkedButton() == ui.sortSizeButton) {
+        auto temp2 = test.getSizesSorted();
+        while (temp2.size()) {
+            list.push_back(temp2.top().name);
+            temp2.pop();
+        }
+    }
+    if (ui.buttonGroup->checkedButton() == ui.sortDateButton) {
+        auto temp3 = test.getDatesSorted();
+        while (temp3.size()) {
+            list.push_back(temp3.top().name);
+            temp3.pop();
+        }
     }
     model.clear();
     for (const string& qstr : list) {
-        if (titles.find(qstr) != titles.end()) {
+        if (titles.find(qstr) != titles.end() && author.toStdString() != "") {
+            QStandardItem* item = new QStandardItem();
+            item->setText(QString::fromStdString(qstr));
+            model.appendRow(item);
+        }
+        else if (author.toStdString() == "") {
             QStandardItem* item = new QStandardItem();
             item->setText(QString::fromStdString(qstr));
             model.appendRow(item);
         }
     }
+}
+void QtWidgetsApplicationLMS::loadData() {
+
+}
+void QtWidgetsApplicationLMS::clearAllData() {
+    auto temp = test.getNamesSorted();
+    while (temp.size()) {
+        test.deleteBook(temp.top());
+        temp.pop();
+    }
+    ui.buttonGroup->checkedButton()->click();
 }
