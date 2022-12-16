@@ -20,6 +20,8 @@ private slots:
     void searchByAuthor();
     void loadData();
     void clearAllData();
+    void reportBug();
+    void Instructions_and_Background();
 private:
     Ui::QtWidgetsApplicationLMSClass ui;
     int counterOfAddition;

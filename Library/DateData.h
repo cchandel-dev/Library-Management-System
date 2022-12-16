@@ -3,8 +3,7 @@
 class DateData
 {
 public:
-	std::time_t age;
+	time_point<system_clock, duration<int>>  age;
 	std::string name;
-	DateData() : name(""), age(std::time_t()) {}
-	DateData(std::string chNewName, std::time_t nNewAge) :name(chNewName), age(nNewAge) {}
+	DateData(std::string chNewName, time_point<system_clock, duration<int>>  nNewAge) :name(chNewName), age(nNewAge) {}
 };

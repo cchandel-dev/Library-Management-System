@@ -188,7 +188,6 @@
      <string>Information</string>
     </property>
     <addaction name="actionHelp"/>
-    <addaction name="actionAbout"/>
     <addaction name="actionReport_Bug"/>
    </widget>
    <addaction name="menuData"/>
@@ -207,7 +206,7 @@
   </action>
   <action name="actionHelp">
    <property name="text">
-    <string>Help</string>
+    <string>Instructions and Background</string>
    </property>
   </action>
   <action name="actionAbout">

@@ -17,6 +17,8 @@ QtWidgetsApplicationLMS::QtWidgetsApplicationLMS(QWidget *parent)
     ui.listView->setModel(&model);
     ui.listView->setSelectionMode(QAbstractItemView::SingleSelection);
     // connect the selectionChanged signal to the handleSelectionChanged slot
+    QObject::connect(ui.actionHelp, SIGNAL(triggered()), this, SLOT(Instructions_and_Background()));
+    QObject::connect(ui.actionReport_Bug, SIGNAL(triggered()), this, SLOT(reportBug()));
     QObject::connect(ui.addButton, SIGNAL(clicked()), this, SLOT(addButton_clicked()));
     QObject::connect(ui.searchButton, SIGNAL(clicked()), this, SLOT(searchByAuthor()));
     QObject::connect(ui.actionLoad_Data, SIGNAL(triggered()), this, SLOT(loadData()));
@@ -158,4 +160,30 @@ void QtWidgetsApplicationLMS::clearAllData() {
         temp.pop();
     }
     ui.buttonGroup->checkedButton()->click();
+}
+void QtWidgetsApplicationLMS::reportBug() {
+    std::string url = "https://github.com/cchandel-dev/Library-Management-System/issues";
+    std::string command; 
+    #ifdef _WIN32
+        command = "start " + url;
+    #elif __unix__
+        // Code for Unix-like systems goes here
+        command = "xdg-open " + url;
+    #else
+    #error "Unsupported platform"
+    #endif
+    system(command.c_str());
+}
+void QtWidgetsApplicationLMS::Instructions_and_Background() {
+    std::string url = "https://github.com/cchandel-dev/Library-Management-System";
+    std::string command;
+#ifdef _WIN32
+    command = "start " + url;
+#elif __unix__
+    // Code for Unix-like systems goes here
+    command = "xdg-open " + url;
+#else
+#error "Unsupported platform"
+#endif
+    system(command.c_str());
 }

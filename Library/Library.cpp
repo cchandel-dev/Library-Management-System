@@ -3,23 +3,12 @@
 
 bool Library::addBook(std::string name, std::string author, int size, int publishDate, int publishMonth, int publishYear) {
 	if (size < 0) return false;
-	publishYear = publishYear < 1970 ? 1970 : publishYear;
-	publishYear = publishYear > 2038 ? 2038 : publishYear;
-	publishMonth = publishMonth < 0 ? 0 : publishMonth;
-	publishMonth = publishMonth > 11 ? 11 : publishMonth;
-	publishDate = publishDate < 1 ? 1 : publishDate;
-	publishDate = publishDate > 31 ? 31 : publishDate;
-	std::tm published;
-	published.tm_year = publishYear - 1900;
-	published.tm_mon = publishMonth - 1;
-	published.tm_mday = publishDate;
-	published.tm_hour = 0;
-	published.tm_min = 0;
-	published.tm_sec = 0;
-	data[name] = Book(name, author, mktime(&published), size);
+	duration<int> days(publishDate + publishMonth * 31 + publishYear * 365);
+	time_point<system_clock, duration<int>> tp(days);
+	data[name] = Book(name, author, tp, size);
 	Book last = data[name];
 	sortByName.push(name);
-	DateData temp_Date = DateData(name, mktime(&published));
+	DateData temp_Date = DateData(name, tp);
 	sortByDate.push(temp_Date);
 	sortBySize.push(SizeData(name, size));
 

@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Native Tests", "Native Test
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QtWidgetsApplication-LMS", "QtWidgetsApplication-LMS\QtWidgetsApplication-LMS.vcxproj", "{BFD3A7B2-DF07-4643-98BE-460D5D68F34C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestingApplication", "TestingApplication\TestingApplication.vcxproj", "{136AEF0F-9E0A-44D1-9E96-30093F73648A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -39,6 +41,14 @@ Global
 		{BFD3A7B2-DF07-4643-98BE-460D5D68F34C}.Release|x64.ActiveCfg = Release|x64
 		{BFD3A7B2-DF07-4643-98BE-460D5D68F34C}.Release|x64.Build.0 = Release|x64
 		{BFD3A7B2-DF07-4643-98BE-460D5D68F34C}.Release|x86.ActiveCfg = Release|x64
+		{136AEF0F-9E0A-44D1-9E96-30093F73648A}.Debug|x64.ActiveCfg = Debug|x64
+		{136AEF0F-9E0A-44D1-9E96-30093F73648A}.Debug|x64.Build.0 = Debug|x64
+		{136AEF0F-9E0A-44D1-9E96-30093F73648A}.Debug|x86.ActiveCfg = Debug|Win32
+		{136AEF0F-9E0A-44D1-9E96-30093F73648A}.Debug|x86.Build.0 = Debug|Win32
+		{136AEF0F-9E0A-44D1-9E96-30093F73648A}.Release|x64.ActiveCfg = Release|x64
+		{136AEF0F-9E0A-44D1-9E96-30093F73648A}.Release|x64.Build.0 = Release|x64
+		{136AEF0F-9E0A-44D1-9E96-30093F73648A}.Release|x86.ActiveCfg = Release|Win32
+		{136AEF0F-9E0A-44D1-9E96-30093F73648A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

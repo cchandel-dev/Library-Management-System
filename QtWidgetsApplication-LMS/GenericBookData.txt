@@ -65,7 +65,7 @@
     "publishing_date": {
       "publishing_year": 0,
       "publishing_month": 1,
-      "publishing_day": 1
+      "publishing_day": 10
     },
     "number_of_pages": 1189
   },
