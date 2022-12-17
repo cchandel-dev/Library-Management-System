@@ -96,8 +96,8 @@ void QtWidgetsApplicationLMS::groupButtonToggled(QAbstractButton* selectedButton
     }
 }
 void QtWidgetsApplicationLMS::searchByAuthor() {
-    QString author = ui.searchLine->text();
-    unordered_set<std::string> titles = test.getBooksByAuthor(author.toStdString());
+    QString key = ui.searchLine->text();
+    unordered_set<std::string> titles = test.getKeywordMappings(key.toStdString());
     std::vector<std::string> list;
     if(ui.buttonGroup->checkedButton() == ui.sortTitleButton){
         auto temp = test.getNamesSorted();
@@ -122,12 +122,12 @@ void QtWidgetsApplicationLMS::searchByAuthor() {
     }
     model.clear();
     for (const string& qstr : list) {
-        if (titles.find(qstr) != titles.end() && author.toStdString() != "") {
+        if (titles.find(qstr) != titles.end() && key.toStdString() != "") {
             QStandardItem* item = new QStandardItem();
             item->setText(QString::fromStdString(qstr));
             model.appendRow(item);
         }
-        else if (author.toStdString() == "") {
+        else if (key.toStdString() == "") {
             QStandardItem* item = new QStandardItem();
             item->setText(QString::fromStdString(qstr));
             model.appendRow(item);

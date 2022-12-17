@@ -26,6 +26,7 @@ struct DateCompare {
 class Library {
 private:
 	unordered_map<std::string, Book> data;
+	unordered_map<std::string, unordered_set<std::string>> keyword_mappings;
 	priority_queue<string> sortByName;
 	priority_queue<DateData, vector<DateData>, DateCompare>sortByDate;
 	priority_queue<SizeData, vector<SizeData>, SizeCompare>sortBySize;
@@ -40,5 +41,6 @@ public:
 	inline priority_queue<DateData, vector<DateData>, DateCompare> getDatesSorted() { return sortByDate; }
 	inline priority_queue<SizeData, vector<SizeData>, SizeCompare> getSizesSorted() { return sortBySize; }
 	inline unordered_set<std::string> getBooksByAuthor(std::string authorName) { return searchByAuthor[authorName]; }
+	inline unordered_set<std::string> getKeywordMappings(std::string keyword) { return keyword_mappings[keyword]; }
 };
 #endif

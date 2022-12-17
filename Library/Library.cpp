@@ -6,6 +6,10 @@ bool Library::addBook(std::string name, std::string author, int size, int publis
 	duration<int> days(publishDate + publishMonth * 31 + publishYear * 365);
 	time_point<system_clock, duration<int>> tp(days);
 	data[name] = Book(name, author, tp, size);
+	unordered_set<std::string> keys = { name, author };
+	for (auto key : keys) {
+		keyword_mappings[key].insert(name);
+	}
 	Book last = data[name];
 	sortByName.push(name);
 	DateData temp_Date = DateData(name, tp);
