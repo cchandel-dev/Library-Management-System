@@ -1,12 +1,21 @@
 #include "Library.h"
+#include <boost/algorithm/string/split.hpp>
+#include <boost/algorithm/string/classification.hpp >
+using namespace std;
 //Overload the < operator.
-
 bool Library::addBook(std::string name, std::string author, int size, int publishDate, int publishMonth, int publishYear) {
 	if (size < 0) return false;
 	duration<int> days(publishDate + publishMonth * 31 + publishYear * 365);
 	time_point<system_clock, duration<int>> tp(days);
 	data[name] = Book(name, author, tp, size);
-	unordered_set<std::string> keys = { name, author };
+
+	std::vector<std::string> name_split;
+	std::vector<std::string> author_split;
+	boost::split(name_split, name, boost::is_any_of(" "));
+	boost::split(author_split, author, boost::is_any_of(" "));
+	unordered_set<std::string> keys;
+	std::move(name_split.begin(), name_split.end(), std::inserter(keys, keys.end()));
+	std::move(author_split.begin(), author_split.end(), std::inserter(keys, keys.end()));
 	for (auto key : keys) {
 		keyword_mappings[key].insert(name);
 	}
