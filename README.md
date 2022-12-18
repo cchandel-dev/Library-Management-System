@@ -3,6 +3,7 @@ Library Management System which allows; the addition of new books and their dele
 UI generated in QT. *Still in production*
 
 You can Add a Book
+
 ![](https://github.com/cchandel-dev/Library-Management-System/blob/main/demo_gifs/addbook.gif)
 
 You can Delete a Book
