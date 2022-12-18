@@ -3,25 +3,25 @@ Library Management System which allows; the addition of new books and their dele
 UI generated in QT. *Still in production*
 
 You can Add a Book
-![](https://github.com/cchandel-dev/Library-Management-System/demo gifs/addbook.gif)
+![](https://github.com/cchandel-dev/Library-Management-System/demo_gifs/addbook.gif)
 
 You can Delete a Book
-![](https://github.com/cchandel-dev/Library-Management-System/demo gifs/deletebook.gif)
+![](https://github.com/cchandel-dev/Library-Management-System/demo_gifs/deletebook.gif)
 
 You can Load a bunch of Generic options
-![](https://github.com/cchandel-dev/Library-Management-System/demo gifs/loadbooks.gif)
+![](https://github.com/cchandel-dev/Library-Management-System/demo_gifs/loadbooks.gif)
 
 You can Clear the entire Library
-![](https://github.com/cchandel-dev/Library-Management-System/demo gifs/clearbook.gif)
+![](https://github.com/cchandel-dev/Library-Management-System/demo_gifs/clearbook.gif)
 
 You can search by Author names or Title words
-![](https://github.com/cchandel-dev/Library-Management-System/demo gifs/search.gif)
+![](https://github.com/cchandel-dev/Library-Management-System/demo_gifs/search.gif)
 
 You can sort the books by; alphabetical order, publish date & book size.
-![](https://github.com/cchandel-dev/Library-Management-System/demo gifs/sort.gif)
+![](https://github.com/cchandel-dev/Library-Management-System/demo_gifs/sort.gif)
 
 The Widget has a link to this ReadMe
 
 
 The Widget has a link to Report Bugs 
-![](https://github.com/cchandel-dev/Library-Management-System/demo gifs/reportbug.gif)
+![](https://github.com/cchandel-dev/Library-Management-System/demo_gifs/reportbug.gif)
