@@ -1,6 +1,6 @@
 # Library-Management-System
 Library Management System which allows; the addition of new books and their deletion,  while providing the ability to search and sort the list view in a variety of ways.
-UI generated in QT. *Still in production*
+UI generated in QT.
 
 You can Add a Book
 
