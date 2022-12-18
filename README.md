@@ -22,7 +22,7 @@ You can sort the books by; alphabetical order, publish date & book size.
 ![](https://github.com/cchandel-dev/Library-Management-System/blob/main/demo_gifs/sort.gif)
 
 The Widget has a link to this ReadMe
-
+![](https://github.com/cchandel-dev/Library-Management-System/blob/main/demo_gifs/readme.gif)
 
 The Widget has a link to Report Bugs 
 ![](https://github.com/cchandel-dev/Library-Management-System/blob/main/demo_gifs/reportbug.gif)
