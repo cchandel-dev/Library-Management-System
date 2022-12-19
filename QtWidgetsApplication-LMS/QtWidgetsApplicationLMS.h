@@ -11,7 +11,9 @@ class QtWidgetsApplicationLMS : public QMainWindow
 public:
     QtWidgetsApplicationLMS(QWidget *parent = nullptr);
     ~QtWidgetsApplicationLMS();
-
+    template <typename T, typename Container = vector<T, std::allocator<T>>, typename Compare = less<T>>
+    void data_to_model(std::priority_queue<T, Container, Compare> pq);
+    void add_to_model(const std::string&);
 private slots:
     void addButton_clicked();
     void on_deleteButton_clicked();

@@ -177,12 +177,6 @@
     <addaction name="actionLoad_Data"/>
     <addaction name="actionClear_Data"/>
    </widget>
-   <widget class="QMenu" name="menuVisualization">
-    <property name="title">
-     <string>Visualization</string>
-    </property>
-    <addaction name="separator"/>
-   </widget>
    <widget class="QMenu" name="menuAbout">
     <property name="title">
      <string>Information</string>
@@ -191,7 +185,6 @@
     <addaction name="actionReport_Bug"/>
    </widget>
    <addaction name="menuData"/>
-   <addaction name="menuVisualization"/>
    <addaction name="menuAbout"/>
   </widget>
   <action name="actionLoad_Data">

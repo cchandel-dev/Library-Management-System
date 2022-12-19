@@ -35,11 +35,10 @@ private:
 public:
 	bool addBook(std::string name, std::string author, int size, int publishDate, int publishMonth, int publishYear);
 	bool deleteBook(std::string name);
-	std::string printStats();
-	int getRecordSize(); 
-	inline priority_queue<string> getNamesSorted() { return sortByName; }
-	inline priority_queue<DateData, vector<DateData>, DateCompare> getDatesSorted() { return sortByDate; }
-	inline priority_queue<SizeData, vector<SizeData>, SizeCompare> getSizesSorted() { return sortBySize; }
+	inline const int& getRecordSize() { return data.size(); }
+	inline priority_queue<string>& getNamesSorted() { return sortByName; }
+	inline priority_queue<DateData, vector<DateData>, DateCompare>& getDatesSorted() { return sortByDate; }
+	inline priority_queue<SizeData, vector<SizeData>, SizeCompare>& getSizesSorted() { return sortBySize; }
 	inline unordered_set<std::string> getBooksByAuthor(std::string authorName) { return searchByAuthor[authorName]; }
 	inline unordered_set<std::string> getKeywordMappings(std::string keyword) { return keyword_mappings[keyword]; }
 };

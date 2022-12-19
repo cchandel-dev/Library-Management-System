@@ -41,9 +41,7 @@ void QtWidgetsApplicationLMS::addButton_clicked() {
         QDate date = dialog.publishCalender->selectedDate();
         if (!title.isEmpty() && !author.isEmpty() && !bookSize.isEmpty() && date.isValid()) {
             test.addBook(title.toStdString(), author.toStdString(), bookSize.toInt(), date.day(), date.month(), date.year());
-            QStandardItem* item = new QStandardItem();
-            item->setText(title);
-            model.appendRow(item);
+            add_to_model(title.toStdString());
         }
     }
 }
@@ -66,33 +64,15 @@ void QtWidgetsApplicationLMS::handleSelectionChanged(const QModelIndex& old_idx,
 void QtWidgetsApplicationLMS::groupButtonToggled(QAbstractButton* selectedButton) {
     if (selectedButton == ui.sortTitleButton) {
         model.clear();
-        auto tempQueue = test.getNamesSorted();
-        while (tempQueue.size()) {
-            QStandardItem* item = new QStandardItem();
-            item->setText(QString::fromStdString(tempQueue.top()));
-            model.appendRow(item);
-            tempQueue.pop();
-        }
+        data_to_model(test.getNamesSorted());
     }
     if (selectedButton == ui.sortSizeButton) {
         model.clear();
-        auto tempQueue = test.getSizesSorted();
-        while (tempQueue.size()) {
-            QStandardItem* item = new QStandardItem();
-            item->setText(QString::fromStdString(tempQueue.top().name));
-            model.appendRow(item);
-            tempQueue.pop();
-        }
+        data_to_model(test.getSizesSorted());
     }
     if (selectedButton == ui.sortDateButton) {
         model.clear();
-        auto tempQueue = test.getDatesSorted();
-        while (tempQueue.size()) {
-            QStandardItem* item = new QStandardItem();
-            item->setText(QString::fromStdString(tempQueue.top().name));
-            model.appendRow(item);
-            tempQueue.pop();
-        }
+        data_to_model(test.getDatesSorted());
     }
 }
 void QtWidgetsApplicationLMS::searchByAuthor() {
@@ -123,32 +103,22 @@ void QtWidgetsApplicationLMS::searchByAuthor() {
     model.clear();
     for (const string& qstr : list) {
         if (titles.find(qstr) != titles.end() && key.toStdString() != "") {
-            QStandardItem* item = new QStandardItem();
-            item->setText(QString::fromStdString(qstr));
-            model.appendRow(item);
+            add_to_model(qstr);
         }
         else if (key.toStdString() == "") {
-            QStandardItem* item = new QStandardItem();
-            item->setText(QString::fromStdString(qstr));
-            model.appendRow(item);
+            add_to_model(qstr);
         }
     }
 }
 void QtWidgetsApplicationLMS::loadData() {
         // read in the json file
         std::ifstream f("GenericBookData.txt", std::ifstream::in);
-
         json j; //create unitiialized json object
-
         f >> j; // initialize json object with what was read from file
-
         std::cout << j << std::endl; // prints json object to screen
-
         for (auto obj : j) {
-           test.addBook(obj["title"], obj["author"], obj["number_of_pages"], obj["publishing_date"]["publishing_day"], obj["publishing_date"]["publishing_month"], obj["publishing_date"]["publishing_year"]);
-            QStandardItem* item = new QStandardItem();
-            item->setText(QString::fromStdString(obj["title"].get<std::string>()));
-            model.appendRow(item);
+            test.addBook(obj["title"], obj["author"], obj["number_of_pages"], obj["publishing_date"]["publishing_day"], obj["publishing_date"]["publishing_month"], obj["publishing_date"]["publishing_year"]);
+            add_to_model(obj["title"]);
         }
         ui.buttonGroup->checkedButton()->click();
 
@@ -186,4 +156,26 @@ void QtWidgetsApplicationLMS::Instructions_and_Background() {
 #error "Unsupported platform"
 #endif
     system(command.c_str());
+}
+
+template <typename T, typename Container, typename Compare>
+void QtWidgetsApplicationLMS::data_to_model(std::priority_queue<T, Container, Compare> pq) {
+    while (pq.size()) {
+        std::string temp;
+        QStandardItem* item = new QStandardItem();
+        if constexpr (std::is_same<T,std::string>::value) {
+            temp = string(pq.top());
+        }
+        else {
+            temp = pq.top().name;
+        }
+        add_to_model(temp);
+        pq.pop();
+    }
+}
+void QtWidgetsApplicationLMS::add_to_model(const std::string& target) {
+    QStandardItem* item = new QStandardItem();
+    item->setText(QString::fromStdString(target));
+    item->setEditable(false);
+    model.appendRow(item);
 }

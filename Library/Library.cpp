@@ -32,7 +32,6 @@ bool Library::addBook(std::string name, std::string author, int size, int publis
 	else {
 		searchByAuthor[author].insert(name);
 	}
-	return true;
 }
 bool Library::deleteBook(std::string name) {
 	//erase element from searchByAuthor
@@ -78,10 +77,3 @@ bool Library::deleteBook(std::string name) {
 	sortBySize = temp_size;
 	return true;
 }
-
-std::string Library::printStats() {
-	std::string output;
-	output += "There are " + to_string(data.size()) + "books in the Library!";
-	return output;
-}
-int Library::getRecordSize(){ return data.size(); }
