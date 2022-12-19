@@ -1,6 +1,6 @@
 # Library-Management-System
 Library Management System which allows; the addition of new books and their deletion,  while providing the ability to search and sort the list view in a variety of ways.
-UI generated in QT. *Still in production*
+UI generated in QT.
 
 You can Add a Book
 
@@ -22,7 +22,7 @@ You can sort the books by; alphabetical order, publish date & book size.
 ![](https://github.com/cchandel-dev/Library-Management-System/blob/main/demo_gifs/sort.gif)
 
 The Widget has a link to this ReadMe
-
+![](https://github.com/cchandel-dev/Library-Management-System/blob/main/demo_gifs/readme.gif)
 
 The Widget has a link to Report Bugs 
 ![](https://github.com/cchandel-dev/Library-Management-System/blob/main/demo_gifs/reportbug.gif)
