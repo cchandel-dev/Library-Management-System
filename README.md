@@ -1,6 +1,8 @@
 # Library-Management-System
 NOTE: To run this project please set Startup Project to the QTWidgetsApplication-LMS project and then run the sln.
-Library Management System which allows; the addition of new books and their deletion,  while providing the ability to search and sort the list view in a variety of ways.
+
+
+This is a Library Management System which allows; the addition of new books and their deletion,  while providing the ability to search and sort the list view in a variety of ways.
 UI generated in QT.
 
 You can Add a Book
