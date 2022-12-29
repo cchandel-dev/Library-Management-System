@@ -1,6 +1,11 @@
 # Library-Management-System
-NOTE: To run this project please set Startup Project to the QTWidgetsApplication-LMS project and then run the sln.
 
+To run this program follow these steps.
+
+    1. Clone this repo
+    2. Open Library.sln in Microsoft Visual Studio
+    3. Set Startup Project to the QTWidgetsApplication-LMS project 
+    4. Build and Run!
 
 This is a Library Management System which allows; the addition of new books and their deletion,  while providing the ability to search and sort the list view in a variety of ways.
 UI generated in QT.
